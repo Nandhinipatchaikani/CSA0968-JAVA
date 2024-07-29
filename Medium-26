@@ -1,0 +1,23 @@
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.Scanner;
+
+public class ak {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter a name: ");
+        String name = input.next();
+        name = name.split("NULL")[0]; // Remove "NULL" if present
+        name = name.trim(); // Remove leading and trailing spaces
+        int len = 0;
+        for (int i = name.length() - 1; i >= 0; i--) {
+            if (name.charAt(i) == ' ') {
+                break; // Stop at the last space
+            } else {
+                len++; // Count the length of the last word
+            }
+        }
+        System.out.println("Length of the last word: " + len);
+        input.close();
+    }
+}

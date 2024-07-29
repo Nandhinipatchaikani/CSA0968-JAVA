@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int i = 0, j = 0;
+        int n = 0;
+        int s1 = 0, s2 = 0;
+        int possum = 0, negsum = 0;
+
+        System.out.println("Enter numbers (enter -1 to stop):");
+        while (n != -1) {
+            n = input.nextInt();
+            if (n == -1)
+                break;
+            if (n > 0) {
+                i++;
+                s1 = s1 + n;
+                possum += n;
+            } else {
+                j++;
+                s2 = s2 + n;
+                negsum += n;
+            }
+        }
+        System.out.println("Number of positive numbers: " + i);
+        System.out.println("Number of negative numbers: " + j);
+
+        if (i != 0 && j != 0) {
+            double pos = (double) possum / i;
+            double neg = (double) negsum / j;
+            System.out.println("The average of positive numbers: " + pos);
+            System.out.println("The average of negative numbers: " + neg);
+        } else {
+            System.out.println("No positive or negative numbers entered.");
+        }
+        input.close();
+    }
+}

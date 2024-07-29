@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+class Fibonacci implements Runnable {
+    int n;
+
+    Fibonacci(int n) {
+        this.n = n;
+    }
+
+    public void run() {
+        int a = 0, b = 1;
+        System.out.println("Fibonacci series up to " + n + " numbers:");
+        for (int i = 0; i < n; i++) {
+            System.out.print(a + " ");
+            int sum = a + b;
+            a = b;
+            b = sum;
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a number: ");
+        String input = scanner.next();
+        try {
+            int n = Integer.parseInt(input);
+            if (n < 0) {
+                System.out.println("Please enter a non-negative integer.");
+            } else {
+                Thread thread = new Thread(new Fibonacci(n));
+                thread.start();
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a valid integer.");
+        }
+        scanner.close();
+    }
+}

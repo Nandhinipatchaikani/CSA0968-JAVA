@@ -1,0 +1,24 @@
+public class Main {
+    public static void main(String[] args) {
+        int[] arr = {4, 54, 29, 71, 7, 59, 98, 23};
+        int compositeCount = 0;
+        int primeCount = 0;
+
+        for (int num : arr) {
+            int factorCount = 0;
+            for (int j = 1; j <= num / 2; j++) {
+                if (num % j == 0) {
+                    factorCount++;
+                }
+            }
+            if (factorCount > 1) {
+                compositeCount++;
+            } else {
+                primeCount++;
+            }
+        }
+
+        System.out.println("Composite Numbers: " + compositeCount);
+        System.out.println("Prime Numbers: " + primeCount);
+    }
+}

@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+class PrimeCheck implements Runnable {
+    int num;
+
+    PrimeCheck(int num) {
+        this.num = num;
+    }
+
+    public void run() {
+        if (num < 2) {
+            System.out.println(num + " is not Prime");
+        } else {
+            boolean isPrime = true;
+            for (int i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                System.out.println(num + " is Prime");
+            } else {
+                System.out.println(num + " is not Prime");
+            }
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a number: ");
+        String input = scanner.next();
+        try {
+            int num = Integer.parseInt(input);
+            Thread thread = new Thread(new PrimeCheck(num));
+            thread.start();
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a valid integer.");
+        }
+        scanner.close();
+    }
+}
+
